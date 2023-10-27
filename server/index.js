@@ -26,7 +26,7 @@ app.use('/contactus', contactUs) // Use a prefix for your routes if needed
 app.use('/manualentry', manualEntry);
 app.use('/admin', adminUser)
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
