@@ -14,6 +14,7 @@ import Login from "views/examples/Login.js";
 import Profile from "views/examples/Profile.js";
 import Register from "views/examples/Register.js";
 import Main from "views/examples/Main";
+import ManualEntry from "views/examples/ManualEntry";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -22,6 +23,7 @@ root.render(
     <Routes>
       <Route path="/" exact element={<Main />} />
       <Route path="/main" exact element={<Index />} />
+      <Route path="/manualentry" exact element={<ManualEntry />} />
       <Route path="/landing-page" exact element={<Landing />} />
       <Route path="/login-page" exact element={<Login />} />
       <Route path="/profile-page" exact element={<Profile />} />
