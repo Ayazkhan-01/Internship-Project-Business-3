@@ -1,6 +1,8 @@
 import React from "react";
 // nodejs library that concatenates classes
 import classnames from "classnames";
+import backgroundImage from '../../assets/img/brand/banner2.jpg';
+
 
 // reactstrap components
 import {
@@ -36,11 +38,18 @@ class Main extends React.Component {
     }
 
     render() {
+        const bgStyle = {
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            width: '100%',  // Set the width or height as needed
+            height: '800px',
+        };
         return (
             <>
                 {/* <DemoNavbar /> */}
                 <main ref="main">
-                    <div className="position-relative">
+                    <div className="position-relative" style={bgStyle}>
                         {/* shape Hero */}
                         <section className="section section-lg section-shaped pb-250">
                             <div className="shape shape-style-1 shape-default">
