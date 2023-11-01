@@ -156,7 +156,7 @@ class Main extends React.Component {
                                                 </Col>
                                                 <Button
                                                     className="mt-4"
-                                                    color="success"
+                                                    color="primary"
                                                     href="#pablo"
                                                     onClick={(e) => e.preventDefault()}
                                                 >
