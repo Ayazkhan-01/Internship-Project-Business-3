@@ -1,7 +1,5 @@
 import React from "react";
 
-
-// reactstrap components
 import {
   Button,
   Card,
@@ -42,6 +40,7 @@ class Login extends React.Component {
     // Send a POST request to the login API
     fetch('http://localhost:8000/admin/login', {
       method: 'POST',
+      mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -51,7 +50,7 @@ class Login extends React.Component {
       .then(data => {
         if (data.message === 'Login successful') {
           // Redirect to the home page upon successful login
-          this.props.history.push('/main');
+          this.props.history.push('/manualentry');
         } else {
           this.setState({ message: data.message });
         }
