@@ -6,8 +6,13 @@ const manualEntry = require("./routes/manualEntry")
 const adminUser = require("./routes/admin")
 const nodemailer = require('nodemailer');
 
-app.use(express.json()); // Middleware for parsing JSON data
+const cors = require('cors');
 
+app.use(express.json());
+
+app.use(cors({
+    origin: '*'
+}));
 // Add custom middleware
 app.use((req, res, next) => {
     // This is a sample middleware that logs the incoming request
@@ -26,7 +31,7 @@ app.use('/contactus', contactUs) // Use a prefix for your routes if needed
 app.use('/manualentry', manualEntry);
 app.use('/admin', adminUser)
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

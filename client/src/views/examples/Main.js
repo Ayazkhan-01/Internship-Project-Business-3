@@ -62,6 +62,8 @@ class Main extends React.Component {
                                 <span />
                                 <span />
                                 <span />
+                                <span />
+                        
                             </div>
                             <Container className="py-lg-md d-flex">
                                 <div className="col px-0">
@@ -93,11 +95,11 @@ class Main extends React.Component {
                                         <Card className="card-lift--hover shadow border-0">
                                             <CardBody className="py-5">
                                                 <Col className="order-md-2" md="12" style={{ padding: "10px" }}>
-                                                    <UncontrolledDropdown style={{ "width": "80%" }}>
-                                                        <DropdownToggle caret color="secondary" style={{ "width": "100%" }}>
+                                                    <UncontrolledDropdown style={{ width: "100%" }}>
+                                                        <DropdownToggle caret color="secondary" style={{ width: "100%" }}>
                                                             Company Sector
                                                         </DropdownToggle>
-                                                        <DropdownMenu style={{ "width": "100%" }}>
+                                                        <DropdownMenu style={{ width: "100%" }}>
                                                             <DropdownItem href="#pablo" onClick={e => e.preventDefault()} >
                                                                 Action
                                                             </DropdownItem>
@@ -105,11 +107,11 @@ class Main extends React.Component {
                                                     </UncontrolledDropdown>
                                                 </Col>
                                                 <Col className="order-md-2" md="12" style={{ padding: "10px" }}>
-                                                    <UncontrolledDropdown style={{ "width": "80%" }}>
-                                                        <DropdownToggle caret color="secondary">
+                                                    <UncontrolledDropdown style={{ width: "100%" }}>
+                                                        <DropdownToggle caret color="secondary" style={{ width: "100%" }}>
                                                             Postal Code
                                                         </DropdownToggle>
-                                                        <DropdownMenu style={{ "width": "100%" }}>
+                                                        <DropdownMenu style={{ width: "100%" }}>-
                                                             <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
                                                                 Action
                                                             </DropdownItem>
@@ -117,11 +119,11 @@ class Main extends React.Component {
                                                     </UncontrolledDropdown>
                                                 </Col>
                                                 <Col className="order-md-2" md="12" style={{ padding: "10px" }}>
-                                                    <UncontrolledDropdown style={{ "width": "80%" }}>
-                                                        <DropdownToggle caret color="secondary">
+                                                    <UncontrolledDropdown style={{ width: "100%" }}>
+                                                        <DropdownToggle caret color="secondary" style={{ width: "100%" }}>
                                                             Employee Count
                                                         </DropdownToggle>
-                                                        <DropdownMenu>
+                                                        <DropdownMenu style={{ width: "100%" }}>
                                                             <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
                                                                 Action
                                                             </DropdownItem>
@@ -129,11 +131,11 @@ class Main extends React.Component {
                                                     </UncontrolledDropdown>
                                                 </Col>
                                                 <Col className="order-md-2" md="12" style={{ padding: "10px" }}>
-                                                    <UncontrolledDropdown style={{ "width": "80%" }}>
-                                                        <DropdownToggle caret color="secondary">
-                                                            Anual Electricity Budget
+                                                    <UncontrolledDropdown style={{ width: "100%" }}>
+                                                        <DropdownToggle caret color="secondary" style={{ width: "100%" }}>
+                                                            Annual Electricity Budget
                                                         </DropdownToggle>
-                                                        <DropdownMenu>
+                                                        <DropdownMenu style={{ width: "100%" }}>
                                                             <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
                                                                 Action
                                                             </DropdownItem>
@@ -141,11 +143,11 @@ class Main extends React.Component {
                                                     </UncontrolledDropdown>
                                                 </Col>
                                                 <Col className="order-md-2" md="12" style={{ padding: "10px" }}>
-                                                    <UncontrolledDropdown style={{ "width": "80%" }}>
-                                                        <DropdownToggle caret color="secondary">
-                                                            Anual Natural Gas Budget
+                                                    <UncontrolledDropdown style={{ width: "100%" }}>
+                                                        <DropdownToggle caret color="secondary" style={{ width: "100%" }}>
+                                                            Annual Natural Gas Budget
                                                         </DropdownToggle>
-                                                        <DropdownMenu>
+                                                        <DropdownMenu style={{ width: "100%" }}>
                                                             <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
                                                                 Action
                                                             </DropdownItem>
@@ -154,13 +156,12 @@ class Main extends React.Component {
                                                 </Col>
                                                 <Button
                                                     className="mt-4"
-                                                    color="primary"
+                                                    color="success"
                                                     href="#pablo"
                                                     onClick={(e) => e.preventDefault()}
                                                 >
                                                     Search
                                                 </Button>
-
                                             </CardBody>
                                         </Card>
 
@@ -173,9 +174,7 @@ class Main extends React.Component {
                                         </div>
                                         <h3>Search your program</h3>
                                         <p>
-                                            The kit comes with three pre-built pages to help you get
-                                            started faster. You can change the text and images and
-                                            you're good to go.
+                                           
                                         </p>
                                         <ul className="list-unstyled mt-5">
                                             <li className="py-2">
@@ -190,7 +189,7 @@ class Main extends React.Component {
                                                     </div>
                                                     <div>
                                                         <h6 className="mb-0">
-                                                            Carefully crafted components
+                                                            
                                                         </h6>
                                                     </div>
                                                 </div>
@@ -206,7 +205,7 @@ class Main extends React.Component {
                                                         </Badge>
                                                     </div>
                                                     <div>
-                                                        <h6 className="mb-0">Amazing page examples</h6>
+                                                        <h6 className="mb-0"></h6>
                                                     </div>
                                                 </div>
                                             </li>

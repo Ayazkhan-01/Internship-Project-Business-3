@@ -1,5 +1,6 @@
 import React from "react";
 
+
 // reactstrap components
 import {
   Button,
@@ -39,7 +40,7 @@ class Login extends React.Component {
     const { username, password } = this.state;
 
     // Send a POST request to the login API
-    fetch('http://localhost:3000/admin/login', {
+    fetch('http://localhost:8000/admin/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
