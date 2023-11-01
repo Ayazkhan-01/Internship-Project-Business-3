@@ -37,6 +37,7 @@ class Main extends React.Component {
         this.refs.main.scrollTop = 0;
     }
 
+    
     render() {
         const bgStyle = {
             backgroundImage: `url(${backgroundImage})`,
