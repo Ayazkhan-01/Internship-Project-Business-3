@@ -29,7 +29,43 @@ import {
 } from "reactstrap";
 
 class Main extends React.Component {
-    state = {};
+    constructor(props) {
+        super(props);
+        this.state = {
+          companySector: [
+            { id: 1, name: 'A' },
+            { id: 2, name: 'B' },
+            { id: 3, name: 'C' },
+          ],
+
+          postalCode: [
+            { id: 1, name: 'A' },
+            { id: 2, name: 'B' },
+            { id: 3, name: 'C' },
+          ],
+
+          employeeCount: [
+            { id: 1, name: 'A' },
+            { id: 2, name: 'B' },
+            { id: 3, name: 'C' },
+          ],
+
+          electricityBudget: [
+            { id: 1, name: 'A' },
+            { id: 2, name: 'B' },
+            { id: 3, name: 'C' },
+          ],
+
+          gasBudget: [
+            { id: 1, name: 'A' },
+            { id: 2, name: 'B' },
+            { id: 3, name: 'C' },
+          ],
+
+
+
+        };
+      }
 
     componentDidMount() {
         document.documentElement.scrollTop = 0;
@@ -100,9 +136,17 @@ class Main extends React.Component {
                                                             Company Sector
                                                         </DropdownToggle>
                                                         <DropdownMenu style={{ width: "100%" }}>
-                                                            <DropdownItem href="#pablo" onClick={e => e.preventDefault()} >
-                                                                Action
-                                                            </DropdownItem>
+                                                        {this.state.companySector.map(item => (
+                                                            <>
+                                                               
+                                                                    <DropdownItem href="#pablo" onClick={e => e.preventDefault()} 
+                                                                     key={item.id}
+                                                                    >
+                                                                    {item.name}
+                                                                    </DropdownItem>
+                                                                
+                                                            </>
+                                                        ))}
                                                         </DropdownMenu>
                                                     </UncontrolledDropdown>
                                                 </Col>
@@ -111,10 +155,18 @@ class Main extends React.Component {
                                                         <DropdownToggle caret color="secondary" style={{ width: "100%" }}>
                                                             Postal Code
                                                         </DropdownToggle>
-                                                        <DropdownMenu style={{ width: "100%" }}>-
-                                                            <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
-                                                                Action
-                                                            </DropdownItem>
+                                                        <DropdownMenu style={{ width: "100%" }}>
+                                                        {this.state.postalCode.map(item => (
+                                                            <>
+                                                               
+                                                                    <DropdownItem href="#pablo" onClick={e => e.preventDefault()} 
+                                                                     key={item.id}
+                                                                    >
+                                                                    {item.name}
+                                                                    </DropdownItem>
+                                                                
+                                                            </>
+                                                        ))}
                                                         </DropdownMenu>
                                                     </UncontrolledDropdown>
                                                 </Col>
@@ -124,9 +176,17 @@ class Main extends React.Component {
                                                             Employee Count
                                                         </DropdownToggle>
                                                         <DropdownMenu style={{ width: "100%" }}>
-                                                            <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
-                                                                Action
-                                                            </DropdownItem>
+                                                        {this.state.employeeCount.map(item => (
+                                                            <>
+                                                               
+                                                                    <DropdownItem href="#pablo" onClick={e => e.preventDefault()} 
+                                                                     key={item.id}
+                                                                    >
+                                                                    {item.name}
+                                                                    </DropdownItem>
+                                                                
+                                                            </>
+                                                        ))}
                                                         </DropdownMenu>
                                                     </UncontrolledDropdown>
                                                 </Col>
@@ -136,9 +196,17 @@ class Main extends React.Component {
                                                             Annual Electricity Budget
                                                         </DropdownToggle>
                                                         <DropdownMenu style={{ width: "100%" }}>
-                                                            <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
-                                                                Action
-                                                            </DropdownItem>
+                                                        {this.state.electricityBudget.map(item => (
+                                                            <>
+                                                               
+                                                                    <DropdownItem href="#pablo" onClick={e => e.preventDefault()} 
+                                                                     key={item.id}
+                                                                    >
+                                                                    {item.name}
+                                                                    </DropdownItem>
+                                                                
+                                                            </>
+                                                        ))}
                                                         </DropdownMenu>
                                                     </UncontrolledDropdown>
                                                 </Col>
@@ -148,17 +216,26 @@ class Main extends React.Component {
                                                             Annual Natural Gas Budget
                                                         </DropdownToggle>
                                                         <DropdownMenu style={{ width: "100%" }}>
-                                                            <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
-                                                                Action
-                                                            </DropdownItem>
+                                                        {this.state.gasBudget.map(item => (
+                                                            <>
+                                                               
+                                                                    <DropdownItem href="#pablo" onClick={e => e.preventDefault()} 
+                                                                     key={item.id}
+                                                                    >
+                                                                    {item.name}
+                                                                    </DropdownItem>
+                                                                
+                                                            </>
+                                                        ))}
                                                         </DropdownMenu>
                                                     </UncontrolledDropdown>
                                                 </Col>
                                                 <Button
                                                     className="mt-4"
-                                                    color="primary"
+                                                    color="success"
                                                     href="#pablo"
                                                     onClick={(e) => e.preventDefault()}
+                                                    style={{ width: '100%' }}
                                                 >
                                                     Search
                                                 </Button>
@@ -235,7 +312,7 @@ class Main extends React.Component {
 
 
 
-                    <section className="section section-lg bg-gradient-default">
+                    <section className="section section-lg bg-gradient-green">
 
                         {/* SVG separator */}
                         <div className="separator separator-bottom separator-skew zindex-100">
@@ -324,7 +401,7 @@ class Main extends React.Component {
                                                 <Button
                                                     block
                                                     className="btn-round"
-                                                    color="default"
+                                                    color="success"
                                                     size="lg"
                                                     type="button"
                                                 >
