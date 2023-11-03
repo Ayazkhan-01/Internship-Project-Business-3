@@ -1330,6 +1330,11 @@ pre code {
   }
 }
 
+.scrollable-dropdown {
+  max-height: 150px; /* Adjust the height as needed */
+  overflow-y: auto;
+}
+
 @media (min-width: 1200px) {
   .col-xl {
     flex-basis: 0;
