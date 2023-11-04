@@ -369,7 +369,12 @@ class Main extends React.Component {
                             </Row>
                         </Container>
                     </section>
+                    
+                    {/* Section for Listing Searched Programs */}
+                    <section>
 
+
+                    </section>
 
 
                     <section className="section section-lg bg-gradient-green">

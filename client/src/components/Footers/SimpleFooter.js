@@ -38,12 +38,13 @@ class SimpleFooter extends React.Component {
             <div>
             <Row className=" row-grid align-items-center mb-5">
               <Col lg="6">
-                <h4 className=" text-primary font-weight-light mb-2">
+                <h4 className="mb-0 font-weight-light" >
                   Thank you for visiting us!
                 </h4>
               </Col>
             </Row>
             </div>
+            <hr /> 
             <div className=" copyright">
                   © {new Date().getFullYear()}{" "}
                   <a
@@ -54,7 +55,7 @@ class SimpleFooter extends React.Component {
                   </a>
                   .
                 </div>
-            <hr /> 
+          
           </Container>
         </footer>
       </>
