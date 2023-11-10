@@ -4,7 +4,8 @@ import classnames from "classnames";
 import backgroundImage from '../../assets/img/brand/banner5.jpg';
 import logo from "../../assets/img/brand/Logo.png"
 import SimpleFooter from "components/Footers/SimpleFooter.js";
-
+import './collaps.css'
+import Collapsible from 'react-collapsible';
 // reactstrap components
 import {
     Badge,
@@ -33,77 +34,150 @@ class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          companySector: [
-            { id: 1, name: 'Agriculture' },
-            { id: 2, name: 'Residential' },
-            { id: 3, name: 'Commercial Real Estate' },
-            { id: 4, name: 'College/Universities' },
-            { id: 5, name: 'Food Processing' },
-            { id: 6, name: 'Dairy' },
-            { id: 7, name: 'Electrification' },
-            { id: 8, name: 'Grocery' },
-            { id: 9, name: 'Greenhouses' },
-            { id: 10, name: 'Health Care' },
-            { id: 11, name: 'Hospitality' },
-            { id: 12, name: 'Parking Garage/Lots' },
-            { id: 13, name: 'Retail' },
-            { id: 14, name: 'Senior Housing' },
-            { id: 15, name: 'C' },
-          ],
+            companySec: "",
+            programType: "",
+            empCount: "",
+            elecBud: "",
+            gasBud: "",
+            minEnergy: "",
+            searchResult: [],
+            displaySearchResult: false,
+            progTy: [{ id: 1, name: 'gas' },
+            { id: 2, name: 'electricity' }],
+            companySector: [
+                { id: 1, name: 'Advanced Manufacturing' },
+                { id: 2, name: 'Agriculture' },
+                { id: 3, name: 'Biotech/Laboratories' },
+                { id: 4, name: 'College/Universities' },
+                { id: 5, name: 'Commercial Real Estate' },
+                { id: 6, name: 'Dairy' },
+                { id: 7, name: 'Data Centers' },
+                { id: 8, name: 'Electrification' },
+                { id: 9, name: 'Food Processing' },
+                { id: 10, name: 'Government' },
+                { id: 11, name: 'Greenhouse' },
+                { id: 12, name: 'Grocery' },
+                { id: 13, name: 'Healthcare' },
+                { id: 14, name: 'Hospitality' },
+                { id: 15, name: 'K-12 Schools' },
+                { id: 16, name: 'LiveStock' },
+                { id: 17, name: 'New Construction' },
+                { id: 18, name: 'Parking Garages/Lots' },
+                { id: 19, name: 'Public Assembly' },
+                { id: 20, name: 'Restaurant' },
+                { id: 21, name: 'Residental' },
+                { id: 22, name: 'Retail' },
+                { id: 23, name: 'Senior Living' },
+                { id: 24, name: 'Warehouses & Cold Storage' },
+                { id: 25, name: 'Water Distribution/Wastewater Treatment' },
+            ],
 
-          postalCode: [
-            { id: 1, name: 'A' },
-            { id: 2, name: 'B' },
-            { id: 3, name: 'C' },
-          ],
+            postalCode: [
+                { id: 1, name: 'A' },
+                { id: 2, name: 'B' },
+                { id: 3, name: 'C' },
+            ],
 
-          employeeCount: [
-            { id: 1, name: '< 20' },
-            { id: 2, name: '20 - 49' },
-            { id: 3, name: '50 - 249' },
-            { id: 3, name: '250 +' },
-          ],
+            employeeCount: [
+                { id: 1, name: '< 20', from: 0, to: 20 },
+                { id: 2, name: '20 - 49', from: 20, to: 43 },
+                { id: 3, name: '50 - 249', from: 50, to: 249 },
+                { id: 3, name: '250 +', from: 250, to: 10000000 },
+            ],
 
-          electricityBudget: [
-            { id: 1, name: '<$ 50k' },
-            { id: 2, name: '$ 50k-$100k' },
-            { id: 3, name: '$ 100k - $ 250k' },
-            { id: 3, name: '$ 250k+' },
-          ],
+            electricityBudget: [
+                { id: 1, name: '<$ 50k', from: 0, to: 50000 },
+                { id: 2, name: '$ 50k-$100k', from: 50000, to: 100000 },
+                { id: 3, name: '$ 100k - $ 250k', from: 100000, to: 250000 },
+                { id: 3, name: '$ 250k+', from: 250000, to: 10000000000 },
+            ],
 
-          gasBudget: [
-            { id: 1, name: '<$ 50k' },
-            { id: 2, name: '$ 50k - $100k' },
-            { id: 3, name: '$ 100k - $250k' },
-            { id: 3, name: '$ 250k+' }
-          ],
+            gasBudget: [
+                { id: 1, name: '<$ 50k', from: 0, to: 50000 },
+                { id: 2, name: '$ 50k - $100k', from: 50000, to: 100000 },
+                { id: 3, name: '$ 100k - $250k', from: 100000, to: 250000 },
+                { id: 3, name: '$ 250k+', from: 250000, to: 10000000000 }
+            ],
 
-          energyConsumption: [
-            { id: 1, name: 'A' },
-            { id: 2, name: 'B' },
-            { id: 3, name: 'C' },
-          ],
+            energyConsumption: [
+                { id: 1, name: '< 50kW •h', from: 0, to: 50000 },
+                { id: 2, name: '50kW •h - 100kW •h', from: 50000, to: 100000 },
+                { id: 3, name: '100 kW •h - 250 kW •h', from: 100000, to: 250000 },
+                { id: 3, name: '250 kW •h +', from: 250000, to: 10000000000 }
+            ],
 
 
 
         };
-      }
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
 
     componentDidMount() {
         document.documentElement.scrollTop = 0;
         document.scrollingElement.scrollTop = 0;
         this.refs.main.scrollTop = 0;
     }
+    handleSubmit(e) {
+        e.preventDefault()
+        console.log(this.state.elecBud)
+        console.log(this.state.companySec)
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = {
+            "sid": this.state.companySec ? this.state.companySec.id : "",
+            "program_type": this.state.programType ? this.state.programType.name : ""
+        };
+        raw.employee_count = this.state.empCount ? {
+            from: this.state.empCount.from,
+            to: this.state.empCount.to,
+        } : ""
+        raw.ele_budget = this.state.elecBud ? {
+            from: this.state.elecBud.from,
+            to: this.state.elecBud.to,
+        } : ""
+        raw.minEnergy = this.state.minEnergy ? {
+            from: this.state.minEnergy.from,
+            to: this.state.minEnergy.to,
+        } : ""
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: JSON.stringify(raw),
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:8000/programs/filter-programs", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result)
+                if (result.statusCode === "200") {
+                    this.setState({ searchResult: result.body, displaySearchResult: true })
+                    this.scrollToResult()
+                }
+            })
+            .catch(error => console.log('error', error));
+    }
 
     scrollToSearch = () => {
         // Find the search section element
         const searchSection = document.getElementById('searchSection');
-    
+
         // Scroll to the search section smoothly
         if (searchSection) {
-          searchSection.scrollIntoView({ behavior: 'smooth' });
+            searchSection.scrollIntoView({ behavior: 'smooth' });
         }
-      };
+    };
+    scrollToResult = () => {
+        // Find the search section element
+        const searchSection = document.getElementById('searchResult');
+
+        // Scroll to the search section smoothly
+        if (searchSection) {
+            searchSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     render() {
         const bgStyle = {
@@ -121,8 +195,8 @@ class Main extends React.Component {
                         {/* shape Hero */}
                         <section className="section section-lg section-shaped pb-250">
                             <div className="shape shape-style-1 shape-default">
-                              
-                        
+
+
                             </div>
                             <Container className="py-lg-md d-flex">
                                 <div className="col px-0">
@@ -140,16 +214,16 @@ class Main extends React.Component {
                                     </Row>
                                     <Row>
                                         <Col>
-        
+
                                             <Button
-                                                    className="mt-4"
-                                                    color="success"
-                                                    href="#pablo"
-                                                    onClick={this.scrollToSearch}
-                                                    style={{ width: '50%', backgroundColor: '#40C365', border: '0px solid #'}}
-                                                >
-                                                     Search your Programs
-                                                </Button>
+                                                className="mt-4"
+                                                color="success"
+
+                                                onClick={this.scrollToSearch}
+                                                style={{ width: '50%', backgroundColor: '#40C365', border: '0px solid #' }}
+                                            >
+                                                Search your Programs
+                                            </Button>
 
                                         </Col>
                                         <Col>
@@ -160,7 +234,7 @@ class Main extends React.Component {
                             </Container>
 
                         </section>
-                       
+
                     </div>
 
                     <section className="section section-lg" id="searchSection">
@@ -171,122 +245,131 @@ class Main extends React.Component {
                                         <Card className="card-lift--hover shadow border-0">
                                             <CardBody className="py-5">
                                                 <Col className="order-md-2" md="12" style={{ padding: "10px" }}>
-                                                    <UncontrolledDropdown style={{ width: "100%" }} > 
+                                                    <UncontrolledDropdown style={{ width: "100%" }} >
                                                         <DropdownToggle caret color="secondary" style={{ width: "100%" }}>
-                                                            Company Sector
+                                                            {this.state.companySec ? this.state.companySec.name : 'Company Sector'}
                                                         </DropdownToggle>
-                                                        <DropdownMenu style={{ width: "100%" }} className="scrollable-dropdown">
-                                                        {this.state.companySector.map(item => (
-                                                            <>
-                                                               
-                                                                    <DropdownItem href="#pablo" onClick={e => e.preventDefault()} 
-                                                                     key={item.id}
+                                                        <DropdownMenu style={{ width: "100%", height: "300px", overflowY: "scroll", overflowX: "hidden" }} className="scrollable-dropdown"
+                                                        >
+                                                            {this.state.companySector.map(item => (
+                                                                <>
+
+                                                                    <DropdownItem href="#pablo"
+                                                                        key={item.id}
+                                                                        value={item.id}
+                                                                        onClick={(e) => { console.log(item.id); this.setState({ companySec: item }) }}
                                                                     >
-                                                                    {item.name}
+                                                                        {item.name}
                                                                     </DropdownItem>
-                                                                
-                                                            </>
-                                                        ))}
+
+                                                                </>
+                                                            ))}
                                                         </DropdownMenu>
                                                     </UncontrolledDropdown>
                                                 </Col>
                                                 <Col className="order-md-2" md="12" style={{ padding: "10px" }}>
                                                     <UncontrolledDropdown style={{ width: "100%" }}>
                                                         <DropdownToggle caret color="secondary" style={{ width: "100%" }}>
-                                                            Postal Code
+                                                            {this.state.programType ? this.state.programType.name : 'Program Type'}
                                                         </DropdownToggle>
                                                         <DropdownMenu style={{ width: "100%" }}>
-                                                        {this.state.postalCode.map(item => (
-                                                            <>
-                                                               
-                                                                    <DropdownItem href="#pablo" onClick={e => e.preventDefault()} 
-                                                                     key={item.id}
+                                                            {this.state.progTy.map(item => (
+                                                                <>
+
+                                                                    <DropdownItem href="#pablo"
+                                                                        onClick={(e) => { this.setState({ programType: item }) }}
+                                                                        key={item.id}
                                                                     >
-                                                                    {item.name}
+                                                                        {item.name}
                                                                     </DropdownItem>
-                                                                
-                                                            </>
-                                                        ))}
+
+                                                                </>
+                                                            ))}
                                                         </DropdownMenu>
                                                     </UncontrolledDropdown>
                                                 </Col>
                                                 <Col className="order-md-2" md="12" style={{ padding: "10px" }}>
                                                     <UncontrolledDropdown style={{ width: "100%" }}>
                                                         <DropdownToggle caret color="secondary" style={{ width: "100%" }}>
-                                                            Employee Count
+                                                            {this.state.empCount ? this.state.empCount.name : 'Employee Count'}
                                                         </DropdownToggle>
                                                         <DropdownMenu style={{ width: "100%" }}>
-                                                        {this.state.employeeCount.map(item => (
-                                                            <>
-                                                               
-                                                                    <DropdownItem href="#pablo" onClick={e => e.preventDefault()} 
-                                                                     key={item.id}
+                                                            {this.state.employeeCount.map(item => (
+                                                                <>
+
+                                                                    <DropdownItem href="#pablo"
+                                                                        onClick={(e) => { this.setState({ empCount: item }) }}
+                                                                        key={item.id}
                                                                     >
-                                                                    {item.name}
+                                                                        {item.name}
                                                                     </DropdownItem>
-                                                                
-                                                            </>
-                                                        ))}
+
+                                                                </>
+                                                            ))}
                                                         </DropdownMenu>
                                                     </UncontrolledDropdown>
                                                 </Col>
                                                 <Col className="order-md-2" md="12" style={{ padding: "10px" }}>
                                                     <UncontrolledDropdown style={{ width: "100%" }}>
                                                         <DropdownToggle caret color="secondary" style={{ width: "100%" }}>
-                                                            Annual Electricity Budget
+                                                            {this.state.elecBud ? this.state.elecBud.name : 'Annual Electricity Budget'}
                                                         </DropdownToggle>
                                                         <DropdownMenu style={{ width: "100%" }}>
-                                                        {this.state.electricityBudget.map(item => (
-                                                            <>
-                                                               
-                                                                    <DropdownItem href="#pablo" onClick={e => e.preventDefault()} 
-                                                                     key={item.id}
+                                                            {this.state.electricityBudget.map(item => (
+                                                                <>
+
+                                                                    <DropdownItem href="#pablo"
+                                                                        onClick={(e) => { this.setState({ elecBud: item }) }}
+                                                                        key={item.id}
                                                                     >
-                                                                    {item.name}
+                                                                        {item.name}
                                                                     </DropdownItem>
-                                                                
-                                                            </>
-                                                        ))}
+
+                                                                </>
+                                                            ))}
                                                         </DropdownMenu>
                                                     </UncontrolledDropdown>
                                                 </Col>
                                                 <Col className="order-md-2" md="12" style={{ padding: "10px" }}>
                                                     <UncontrolledDropdown style={{ width: "100%" }}>
                                                         <DropdownToggle caret color="secondary" style={{ width: "100%" }}>
-                                                            Annual Natural Gas Budget
+                                                            {this.state.gasBud ? this.state.gasBud.name : 'Annual Natural Gas Budget'}
                                                         </DropdownToggle>
                                                         <DropdownMenu style={{ width: "100%" }}>
-                                                        {this.state.gasBudget.map(item => (
-                                                            <>
-                                                               
-                                                                    <DropdownItem href="#pablo" onClick={e => e.preventDefault()} 
-                                                                     key={item.id}
+                                                            {this.state.gasBudget.map(item => (
+                                                                <>
+
+                                                                    <DropdownItem href="#pablo"
+                                                                        onClick={(e) => { this.setState({ gasBud: item }) }}
+                                                                        key={item.id}
                                                                     >
-                                                                    {item.name}
+                                                                        {item.name}
                                                                     </DropdownItem>
-                                                                
-                                                            </>
-                                                        ))}
+
+                                                                </>
+                                                            ))}
                                                         </DropdownMenu>
                                                     </UncontrolledDropdown>
                                                 </Col>
                                                 <Col className="order-md-2" md="12" style={{ padding: "10px" }}>
                                                     <UncontrolledDropdown style={{ width: "100%" }}>
                                                         <DropdownToggle caret color="secondary" style={{ width: "100%" }}>
-                                                            Minimum Energy Consumption
+                                                            {this.state.minEnergy ? this.state.minEnergy.name : 'Minimum Energy Consumption'}
                                                         </DropdownToggle>
                                                         <DropdownMenu style={{ width: "100%" }}>
-                                                        {this.state.energyConsumption.map(item => (
-                                                            <>
-                                                               
-                                                                    <DropdownItem href="#pablo" onClick={e => e.preventDefault()} 
-                                                                     key={item.id}
+                                                            {this.state.energyConsumption.map(item => (
+                                                                <>
+
+                                                                    <DropdownItem href="#pablo"
+                                                                        onClick={(e) => { this.setState({ minEnergy: item }) }}
+
+                                                                        key={item.id}
                                                                     >
-                                                                    {item.name}
+                                                                        {item.name}
                                                                     </DropdownItem>
-                                                                
-                                                            </>
-                                                        ))}
+
+                                                                </>
+                                                            ))}
                                                         </DropdownMenu>
                                                     </UncontrolledDropdown>
                                                 </Col>
@@ -294,7 +377,7 @@ class Main extends React.Component {
                                                     className="mt-4"
                                                     color="success"
                                                     href="#pablo"
-                                                    onClick={(e) => e.preventDefault()}
+                                                    onClick={(e) => this.handleSubmit(e)}
                                                     style={{ width: '100%' }}
                                                 >
                                                     Search
@@ -304,13 +387,14 @@ class Main extends React.Component {
 
                                     </Row>
                                 </Col>
+
                                 <Col className="order-md-1" md="6">
                                     <div className="pr-md-5">
                                         <div className="icon icon-lg icon-shape icon-shape-success shadow rounded-circle mb-5">
                                             <i className="ni ni-like-2" />
                                         </div>
                                         <h3>Search your program</h3>
-                                        
+
                                         <ul className="list-unstyled mt-5">
                                             <li className="py-2">
                                                 <div className="d-flex align-items-center">
@@ -369,6 +453,69 @@ class Main extends React.Component {
                             </Row>
                         </Container>
                     </section>
+
+                    <Row>
+
+                        <Col>
+                            {
+
+                                this.state.displaySearchResult ?
+                                    this.state.searchResult.length > 0 ?
+                                        this.state.searchResult.map((item) => (
+                                            <>
+
+                                                <Card className="shadow shadow-lg--hover mt-5" style={{ margin: "30px" }} id="searchResult">
+                                                    <CardBody>
+                                                        <div className="d-flex px-3">
+                                                            <div>
+                                                                <div className="icon icon-shape bg-gradient-success rounded-circle text-white">
+                                                                    <i className="ni ni-satisfied" />
+                                                                </div>
+                                                            </div>
+                                                            <div className="pl-4">
+                                                                <h5 className="title text-success">
+                                                                    {item.program_name}
+                                                                </h5>
+                                                                <p>
+                                                                    <p>Program Type: {item.program_type}</p>
+                                                                    <p>Program Brief: {item.program_brief}</p>
+
+                                                                    <p>Sector: {item.sec_name}</p>
+                                                                </p>
+                                                                <a
+                                                                    className="text-success"
+                                                                    href={item.program_link}
+
+                                                                >
+                                                                    Learn more
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </CardBody>
+                                                </Card>
+
+                                            </>
+                                        ))
+                                        :
+                                        <>
+                                            <Card className="shadow shadow-lg--hover mt-5">
+                                                <CardBody>
+                                                    <div className="d-flex px-3">
+
+                                                        <div className="pl-4">
+                                                            <h5 className="title text-success">
+                                                                Sorry! No Program Found.
+                                                            </h5>
+                                                        </div>
+                                                    </div>
+                                                </CardBody>
+                                            </Card>
+                                        </>
+                                    :
+                                    null
+                            }
+                        </Col>
+                    </Row>
 
 
 
@@ -476,7 +623,7 @@ class Main extends React.Component {
                     </section>
 
                 </main>
-                <SimpleFooter/>
+                <SimpleFooter />
             </>
         );
     }

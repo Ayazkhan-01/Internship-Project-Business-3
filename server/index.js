@@ -4,6 +4,7 @@ const usersRouter = require('./routes/example');
 const contactUs = require("./routes/contactus");
 const manualEntry = require("./routes/manualEntry")
 const adminUser = require("./routes/admin")
+const programs = require("./routes/program")
 const nodemailer = require('nodemailer');
 
 const cors = require('cors');
@@ -29,7 +30,8 @@ const transporter = nodemailer.createTransport({
 app.use('/api', usersRouter);
 app.use('/contactus', contactUs) // Use a prefix for your routes if needed
 app.use('/manualentry', manualEntry);
-app.use('/admin', adminUser)
+app.use('/admin', adminUser);
+app.use('/programs', programs);
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {

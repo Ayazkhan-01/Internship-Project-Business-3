@@ -4,7 +4,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'root',
-    database: 'social',
+    database: 'greenthumb',
 });
 module.exports = connection
 // connection.connect((err) => {
