@@ -106,8 +106,7 @@ class Main extends React.Component {
                 { id: 3, name: '250 kW •h +', from: 250000, to: 10000000000 }
             ],
 
-
-
+            
         };
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -594,6 +593,30 @@ class Main extends React.Component {
                                                     />
                                                 </InputGroup>
                                             </FormGroup>
+                                            <FormGroup
+                                                className={classnames({
+                                                    focused: this.state.phoneFocused,
+                                                })}
+                                            >
+                                                <InputGroup className="input-group-alternative">
+                                                    <InputGroupAddon addonType="prepend">
+                                                        <InputGroupText>
+                                                            <i className="ni ni-mobile-button" />
+                                                        </InputGroupText>
+                                                    </InputGroupAddon>
+                                                    <Input
+                                                        placeholder="Phone number"
+                                                        type="tel"  // Use type="tel" for phone input
+                                                        onFocus={(e) =>
+                                                            this.setState({ phoneFocused: true })
+                                                        }
+                                                        onBlur={(e) =>
+                                                            this.setState({ phoneFocused: false })
+                                                        }
+                                                    />
+                                                </InputGroup>
+                                            </FormGroup>
+
                                             <FormGroup className="mb-4">
                                                 <Input
                                                     className="form-control-alternative"
@@ -611,6 +634,8 @@ class Main extends React.Component {
                                                     color="success"
                                                     size="lg"
                                                     type="button"
+                                                    onClick={this.handleSubmit}
+
                                                 >
                                                     Send Message
                                                 </Button>
