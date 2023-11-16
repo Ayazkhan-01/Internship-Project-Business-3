@@ -38,6 +38,12 @@ class Login extends React.Component {
   handleLogin = () => {
     const { username, password } = this.state;
 
+    // Make sure the fields are not empty
+    if (!username || !password) {
+      alert('Please fill in all fields');
+      return;
+    }
+
     // Send a POST request to the login API
     fetch('http://localhost:8000/admin/login', {
       method: 'POST',
@@ -51,7 +57,7 @@ class Login extends React.Component {
       .then(data => {
         if (data.message === 'Login successful') {
           // Redirect to the home page upon successful login
-          this.props.history.push('/manualentry');
+          window.location.href = '/manualentry';
         } else {
           this.setState({ message: data.message });
         }

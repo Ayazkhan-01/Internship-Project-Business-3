@@ -17,6 +17,7 @@
 */
 /*eslint-disable*/
 import React from "react";
+import { Link } from 'react-router-dom';
 // reactstrap components
 import {
   Button,
@@ -42,6 +43,14 @@ class SimpleFooter extends React.Component {
                   Thank you for visiting us!
                 </h4>
               </Col>
+              <Col lg="6" className="text-lg-right">
+                  {/* Add the Link component for routing to the admin login page */}
+                  <Link to="/login-page">
+                    <Button color="primary" size="sm">
+                      Admin Login
+                    </Button>
+                  </Link>
+                </Col>
             </Row>
             </div>
             <div className=" copyright">

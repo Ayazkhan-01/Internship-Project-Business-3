@@ -6,6 +6,8 @@ import logo from "../../assets/img/brand/Logo.png"
 import SimpleFooter from "components/Footers/SimpleFooter.js";
 import './collaps.css'
 import Collapsible from 'react-collapsible';
+import axios from 'axios';
+
 // reactstrap components
 import {
     Badge,
@@ -105,10 +107,19 @@ class Main extends React.Component {
                 { id: 3, name: '100 kW •h - 250 kW •h', from: 100000, to: 250000 },
                 { id: 3, name: '250 kW •h +', from: 250000, to: 10000000000 }
             ],
+            contactUs: {
+                name: "",
+                email: "",
+                phone: "",
+                message: "",
+            },
 
             
         };
+
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleContactUsSubmit = this.handleContactUsSubmit.bind(this);
+
     }
 
     componentDidMount() {
@@ -175,6 +186,72 @@ class Main extends React.Component {
         // Scroll to the search section smoothly
         if (searchSection) {
             searchSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    handleContactUsSubmit = async () => {
+        try {
+          const { name, email, phone, message } = this.state.contactUs;
+      
+          // Make sure the fields are not empty
+          if (!name || !email || !phone || !message) {
+            alert('Please fill in all fields');
+            return;
+          }
+      
+          // Send data to the backend upon form submission using fetch
+          const response = await fetch('http://localhost:8000/contactus/send-message', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name,
+              email,
+              phone,
+              message,
+            }),
+          });
+      
+          // Check if the response is successful (status code 200)
+          if (response.ok) {
+            // If successful, reset the contact us form fields or perform any other actions
+            this.setState({
+              contactUs: {
+                name: '',
+                email: '',
+                phone: '',
+                message: '',
+              },
+            });
+      
+            alert('Message sent successfully and data stored in the database');
+          } else {
+            // Handle error response
+            console.error('Error submitting contact us form:', response.statusText);
+            alert('Error submitting contact us form. Please try again.');
+          }
+        } catch (error) {
+          console.error('Error submitting contact us form:', error);
+          alert('Error submitting contact us form. Please try again.');
+        }
+    };
+      
+    
+    handleChange = (e) => {
+        const { name, value } = e.target;
+         // Check if the changed field belongs to the contact us form
+        if (Object.keys(this.state.contactUs).includes(name)) {
+            // Update contact us form state
+            this.setState((prevState) => ({
+            contactUs: {
+                ...prevState.contactUs,
+                [name]: value,
+            },
+            }));
+        } else {
+            // Update other state properties
+            this.setState({ [name]: value });
         }
     };
 
@@ -547,11 +624,7 @@ class Main extends React.Component {
                                             <p className="mt-0">
                                                 Your project is very important to us.
                                             </p>
-                                            <FormGroup
-                                                className={classnames("mt-5", {
-                                                    focused: this.state.nameFocused,
-                                                })}
-                                            >
+                                            <FormGroup>
                                                 <InputGroup className="input-group-alternative">
                                                     <InputGroupAddon addonType="prepend">
                                                         <InputGroupText>
@@ -559,22 +632,15 @@ class Main extends React.Component {
                                                         </InputGroupText>
                                                     </InputGroupAddon>
                                                     <Input
-                                                        placeholder="Company name"
+                                                        placeholder="Company Name"
                                                         type="text"
-                                                        onFocus={(e) =>
-                                                            this.setState({ nameFocused: true })
-                                                        }
-                                                        onBlur={(e) =>
-                                                            this.setState({ nameFocused: false })
-                                                        }
+                                                        value={this.state.contactUs.name}
+                                                        onChange={this.handleChange}
+                                                        name="name"
                                                     />
                                                 </InputGroup>
                                             </FormGroup>
-                                            <FormGroup
-                                                className={classnames({
-                                                    focused: this.state.emailFocused,
-                                                })}
-                                            >
+                                            <FormGroup>
                                                 <InputGroup className="input-group-alternative">
                                                     <InputGroupAddon addonType="prepend">
                                                         <InputGroupText>
@@ -584,20 +650,13 @@ class Main extends React.Component {
                                                     <Input
                                                         placeholder="Email address"
                                                         type="email"
-                                                        onFocus={(e) =>
-                                                            this.setState({ emailFocused: true })
-                                                        }
-                                                        onBlur={(e) =>
-                                                            this.setState({ emailFocused: false })
-                                                        }
+                                                        value={this.state.contactUs.email}
+                                                        onChange={this.handleChange}
+                                                        name="email"
                                                     />
                                                 </InputGroup>
                                             </FormGroup>
-                                            <FormGroup
-                                                className={classnames({
-                                                    focused: this.state.phoneFocused,
-                                                })}
-                                            >
+                                            <FormGroup>
                                                 <InputGroup className="input-group-alternative">
                                                     <InputGroupAddon addonType="prepend">
                                                         <InputGroupText>
@@ -607,12 +666,9 @@ class Main extends React.Component {
                                                     <Input
                                                         placeholder="Phone number"
                                                         type="tel"  // Use type="tel" for phone input
-                                                        onFocus={(e) =>
-                                                            this.setState({ phoneFocused: true })
-                                                        }
-                                                        onBlur={(e) =>
-                                                            this.setState({ phoneFocused: false })
-                                                        }
+                                                        value={this.state.contactUs.phone}
+                                                        onChange={this.handleChange}
+                                                        name="phone"
                                                     />
                                                 </InputGroup>
                                             </FormGroup>
@@ -621,10 +677,13 @@ class Main extends React.Component {
                                                 <Input
                                                     className="form-control-alternative"
                                                     cols="80"
-                                                    name="name"
+                                                    name="message"
                                                     placeholder="Type a message..."
                                                     rows="4"
                                                     type="textarea"
+                                                    value={this.state.contactUs.message}
+                                                    onChange={this.handleChange}
+                                                    
                                                 />
                                             </FormGroup>
                                             <div>
@@ -634,8 +693,7 @@ class Main extends React.Component {
                                                     color="success"
                                                     size="lg"
                                                     type="button"
-                                                    onClick={this.handleSubmit}
-
+                                                    onClick={this.handleContactUsSubmit}
                                                 >
                                                     Send Message
                                                 </Button>
