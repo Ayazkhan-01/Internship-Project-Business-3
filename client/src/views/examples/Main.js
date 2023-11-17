@@ -65,7 +65,7 @@ class Main extends React.Component {
           ],
 
           electricityBudget: [
-            { id: 1, name: '<$ 50k' },
+            { id: 1, name: '< $ 50k' },
             { id: 2, name: '$ 50k-$100k' },
             { id: 3, name: '$ 100k - $ 250k' },
             { id: 3, name: '$ 250k+' },
@@ -144,7 +144,7 @@ class Main extends React.Component {
                                             <Button
                                                     className="mt-4"
                                                     color="success"
-                                                    href="#pablo"
+                                                   
                                                     onClick={this.scrollToSearch}
                                                     style={{ width: '50%', backgroundColor: '#40C365', border: '0px solid #'}}
                                                 >
@@ -179,7 +179,7 @@ class Main extends React.Component {
                                                         {this.state.companySector.map(item => (
                                                             <>
                                                                
-                                                                    <DropdownItem href="#pablo" onClick={e => e.preventDefault()} 
+                                                                    <DropdownItem onClick={e => e.preventDefault()} 
                                                                      key={item.id}
                                                                     >
                                                                     {item.name}
@@ -296,9 +296,12 @@ class Main extends React.Component {
                                                     href="#pablo"
                                                     onClick={(e) => e.preventDefault()}
                                                     style={{ width: '100%' }}
+                                                 
+                                                    
                                                 >
                                                     Search
                                                 </Button>
+                                               
                                             </CardBody>
                                         </Card>
 
@@ -307,6 +310,7 @@ class Main extends React.Component {
                                 <Col className="order-md-1" md="6">
                                     <div className="pr-md-5">
                                         <div className="icon icon-lg icon-shape icon-shape-success shadow rounded-circle mb-5">
+                                        
                                             <i className="ni ni-like-2" />
                                         </div>
                                         <h3>Search your program</h3>
