@@ -26,6 +26,28 @@ const sendContactMess = async (req, res) => {
         text: `Name: ${name}\nMessage: ${message}`,
     };
 
+    // transporter.sendMail(mailOptions, (mailErr, info) => {
+    //     if (mailErr) {
+    //         console.error('Error sending email: ' + mailErr.message);
+    //         return res.status(500).json({ error: 'Internal Server Error' });
+    //     }
+
+    //     console.log('Message sent: %s', info.messageId);
+    //     res.status(201).json({ message: 'Message sent successfully' });
+    // });
+
+
+    // const sql = 'INSERT INTO contact_us (name, email, phone, message) VALUES (?, ?, ?, ?)';
+    // connection.query(sql, [name, email, phone, message], async (err, result) => {
+    //     if (err) {
+    //         console.error('Error inserting data into the database: ' + err.message);
+    //         res.status(500).json({ error: 'Internal Server Error' });
+    //         return;
+    //     } 
+    //     res.status(201).json({ message: 'Data stored successfully' });
+        
+    // });
+
     transporter.sendMail(mailOptions, (mailErr, info) => {
         if (mailErr) {
             console.error('Error sending email: ' + mailErr.message);
@@ -33,19 +55,17 @@ const sendContactMess = async (req, res) => {
         }
 
         console.log('Message sent: %s', info.messageId);
-        res.status(201).json({ message: 'Message sent successfully' });
-    });
 
+        // Insert data into the database
+        const sql = 'INSERT INTO contact_us (name, email, phone, message) VALUES (?, ?, ?, ?)';
+        connection.query(sql, [name, email, phone, message], async (err, result) => {
+            if (err) {
+                console.error('Error inserting data into the database: ' + err.message);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            } 
 
-    const sql = 'INSERT INTO contact_us (name, email, phone, message) VALUES (?, ?, ?, ?)';
-    connection.query(sql, [name, email, phone, message], async (err, result) => {
-        if (err) {
-            console.error('Error inserting data into the database: ' + err.message);
-            res.status(500).json({ error: 'Internal Server Error' });
-            return;
-        } 
-        res.status(201).json({ message: 'Data stored successfully' });
-        
+            res.status(201).json({ message: 'Message sent successfully and data stored successfully' });
+        });
     });
 };
 
