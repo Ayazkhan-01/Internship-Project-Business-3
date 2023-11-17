@@ -52,7 +52,45 @@ class SimpleFooter extends React.Component {
                   </Link>
                 </Col>
             </Row>
+            <Row>
+              <Col>
+                <h6 className=" text-dark font-weight-bold mb-2">
+                      Meet the Creators: Team of UWindsor
+                </h6>
+              </Col>
+            </Row>
+            <Row>
+              <Col lg="4">
+                <h6 className=" text-dark font-weight-normal mb-2">
+                  Ayush Rana
+                </h6>
+              </Col>
+              <Col lg="4">
+                <h6 className=" text-dark font-weight-medium mb-2">
+                  Kinjal Prajapati
+                </h6>
+              </Col>
+              <Col lg="4">
+                <h6 className=" text-dark font-weight-medium mb-2">
+                 Hardi Kadia
+                </h6>
+              </Col>
+            </Row>
+            <Row>
+              <Col lg="4">
+                <h6 className=" text-dark font-weight-medium mb-2">
+                  Dhruvesh Panchal
+                </h6>
+              </Col>
+              <Col lg="4">
+                <h6 className=" text-dark font-weight-medium mb-2">
+                  Ayaz Khan
+                </h6>
+              </Col>
+              
+            </Row>
             </div>
+            <hr /> 
             <div className=" copyright">
                   © {new Date().getFullYear()}{" "}
                   <a
@@ -63,7 +101,7 @@ class SimpleFooter extends React.Component {
                   </a>
                   .
                 </div>
-            <hr /> 
+            
           </Container>
         </footer>
       </>

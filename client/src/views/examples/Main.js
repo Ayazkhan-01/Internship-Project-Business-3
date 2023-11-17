@@ -5,7 +5,7 @@ import backgroundImage from '../../assets/img/brand/banner5.jpg';
 import logo from "../../assets/img/brand/Logo.png"
 import SimpleFooter from "components/Footers/SimpleFooter.js";
 import './collaps.css'
-import Collapsible from 'react-collapsible';
+// import Collapsible from 'react-collapsible';
 import axios from 'axios';
 
 // reactstrap components
@@ -74,11 +74,11 @@ class Main extends React.Component {
                 { id: 25, name: 'Water Distribution/Wastewater Treatment' },
             ],
 
-            postalCode: [
-                { id: 1, name: 'A' },
-                { id: 2, name: 'B' },
-                { id: 3, name: 'C' },
-            ],
+            // postalCode: [
+            //     { id: 1, name: 'A' },
+            //     { id: 2, name: 'B' },
+            //     { id: 3, name: 'C' },
+            // ],
 
             employeeCount: [
                 { id: 1, name: '< 20', from: 0, to: 20 },
@@ -640,6 +640,33 @@ class Main extends React.Component {
                                                     />
                                                 </InputGroup>
                                             </FormGroup>
+
+                                            <FormGroup
+                                                className={classnames({
+                                                    focused: this.state.nameFocused,
+                                                })}
+                                            >
+                                                <InputGroup className="input-group-alternative">
+                                                    <InputGroupAddon addonType="prepend">
+                                                        <InputGroupText>
+                                                            <i className="ni ni-single-02" />
+                                                        </InputGroupText>
+                                                    </InputGroupAddon>
+                                                    <Input
+                                                        placeholder="Contact Person"
+                                                        type="text"
+                                                        onFocus={(e) =>
+                                                            this.setState({ nameFocused: true })
+                                                        }
+                                                        onBlur={(e) =>
+                                                            this.setState({ nameFocused: false })
+                                                        }
+                                                    />
+                                                </InputGroup>
+
+                                            </FormGroup>
+                                        
+
                                             <FormGroup>
                                                 <InputGroup className="input-group-alternative">
                                                     <InputGroupAddon addonType="prepend">
