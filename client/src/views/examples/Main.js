@@ -200,7 +200,7 @@ class Main extends React.Component {
           }
       
           // Send data to the backend upon form submission using fetch
-          const response = await fetch('http://localhost:8000/contactus/send-message', {
+          const response = await fetch('http://localhost:8000/contactus/contact', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -641,7 +641,7 @@ class Main extends React.Component {
                                                 </InputGroup>
                                             </FormGroup>
 
-                                            <FormGroup
+                                            {/* <FormGroup
                                                 className={classnames({
                                                     focused: this.state.nameFocused,
                                                 })}
@@ -664,7 +664,7 @@ class Main extends React.Component {
                                                     />
                                                 </InputGroup>
 
-                                            </FormGroup>
+                                            </FormGroup> */}
                                         
 
                                             <FormGroup>
