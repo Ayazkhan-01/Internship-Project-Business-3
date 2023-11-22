@@ -11,6 +11,23 @@ const getAllPrograms = (req, res) => {
     });
 };
 
+const searchAllPrograms = (req, res) => {
+    const partialProgramName = req.query.partialProgramName;
+
+    // Use a SQL query to find programs that start with the partialProgramName
+    const sql = "SELECT * FROM programs WHERE name LIKE ? LIMIT 5";
+    const params = [`%${partialProgramName}%`];
+
+    connection.query(sql, params, (err, results) => {
+        if (err) {
+            console.error('Error fetching suggestions:', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+            res.json(results);
+        }
+    });
+};
+
 const filterPrograms = (req, res) => {
 
     const { sid, program_type, employee_count, ele_budget, min_ele_consumption } = req.body;
@@ -40,7 +57,10 @@ const filterPrograms = (req, res) => {
         });
 };
 
+
+
 module.exports = {
     getAllPrograms,
-    filterPrograms
+    filterPrograms,
+    searchAllPrograms
 }

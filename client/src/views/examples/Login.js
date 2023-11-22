@@ -96,7 +96,7 @@ class Login extends React.Component {
                           <InputGroup className="input-group-alternative">
                             <InputGroupAddon addonType="prepend">
                               <InputGroupText>
-                                <i className="ni ni-email-83" />
+                                <i className="ni ni-single-02" />
                               </InputGroupText>
                             </InputGroupAddon>
                             <Input

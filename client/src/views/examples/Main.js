@@ -114,7 +114,7 @@ class Main extends React.Component {
                 message: "",
             },
 
-            
+
         };
 
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -191,63 +191,63 @@ class Main extends React.Component {
 
     handleContactUsSubmit = async () => {
         try {
-          const { name, email, phone, message } = this.state.contactUs;
-      
-          // Make sure the fields are not empty
-          if (!name || !email || !phone || !message) {
-            alert('Please fill in all fields');
-            return;
-          }
-      
-          // Send data to the backend upon form submission using fetch
-          const response = await fetch('http://localhost:8000/contactus/contact', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              name,
-              email,
-              phone,
-              message,
-            }),
-          });
-      
-          // Check if the response is successful (status code 200)
-          if (response.ok) {
-            // If successful, reset the contact us form fields or perform any other actions
-            this.setState({
-              contactUs: {
-                name: '',
-                email: '',
-                phone: '',
-                message: '',
-              },
+            const { name, email, phone, message } = this.state.contactUs;
+
+            // Make sure the fields are not empty
+            if (!name || !email || !phone || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            // Send data to the backend upon form submission using fetch
+            const response = await fetch('http://localhost:8000/contactus/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    phone,
+                    message,
+                }),
             });
-      
-            alert('Message sent successfully and data stored in the database');
-          } else {
-            // Handle error response
-            console.error('Error submitting contact us form:', response.statusText);
-            alert('Error submitting contact us form. Please try again.');
-          }
+
+            // Check if the response is successful (status code 200)
+            if (response.ok) {
+                // If successful, reset the contact us form fields or perform any other actions
+                this.setState({
+                    contactUs: {
+                        name: '',
+                        email: '',
+                        phone: '',
+                        message: '',
+                    },
+                });
+
+                alert('Message sent successfully and data stored in the database');
+            } else {
+                // Handle error response
+                console.error('Error submitting contact us form:', response.statusText);
+                alert('Error submitting contact us form. Please try again.');
+            }
         } catch (error) {
-          console.error('Error submitting contact us form:', error);
-          alert('Error submitting contact us form. Please try again.');
+            console.error('Error submitting contact us form:', error);
+            alert('Error submitting contact us form. Please try again.');
         }
     };
-      
-    
+
+
     handleChange = (e) => {
         const { name, value } = e.target;
-         // Check if the changed field belongs to the contact us form
+        // Check if the changed field belongs to the contact us form
         if (Object.keys(this.state.contactUs).includes(name)) {
             // Update contact us form state
             this.setState((prevState) => ({
-            contactUs: {
-                ...prevState.contactUs,
-                [name]: value,
-            },
+                contactUs: {
+                    ...prevState.contactUs,
+                    [name]: value,
+                },
             }));
         } else {
             // Update other state properties
@@ -280,7 +280,7 @@ class Main extends React.Component {
                                         <Col lg="6">
                                             <h1 className="display-1 text-white">
                                                 GreenThumb{" "}
-                                                <span className="display-3 text-white">Funding for Energy Projects</span>
+                                                <span className="display-3 text-white">Funding for Ontario Projects</span>
                                             </h1>
                                             <p className="lead text-white">
                                                 Empowering companies to unlock financial opportunities through targeted program discovery and funding eligibility – let's build a prosperous future together!
@@ -665,7 +665,7 @@ class Main extends React.Component {
                                                 </InputGroup>
 
                                             </FormGroup> */}
-                                        
+
 
                                             <FormGroup>
                                                 <InputGroup className="input-group-alternative">
@@ -710,7 +710,7 @@ class Main extends React.Component {
                                                     type="textarea"
                                                     value={this.state.contactUs.message}
                                                     onChange={this.handleChange}
-                                                    
+
                                                 />
                                             </FormGroup>
                                             <div>
