@@ -12,13 +12,13 @@ const getAllPrograms = (req, res) => {
 };
 
 const searchAllPrograms = (req, res) => {
-    const partialProgramName = req.query.partialProgramName;
+    const partialProgramName = req.body.partialProgramName;
 
-    // Use a SQL query to find programs that start with the partialProgramName
-    const sql = "SELECT * FROM programs WHERE name LIKE ? LIMIT 5";
-    const params = [`%${partialProgramName}%`];
+    // Use a parameterized query to find programs that start with the partialProgramName
+    const sql = 'SELECT * FROM programs WHERE program_name LIKE ? LIMIT 5';
 
-    connection.query(sql, params, (err, results) => {
+    // Using parameterized query to prevent SQL injection
+    connection.query(sql, [`%${partialProgramName}%`], (err, results) => {
         if (err) {
             console.error('Error fetching suggestions:', err);
             res.status(500).json({ error: 'Internal Server Error' });

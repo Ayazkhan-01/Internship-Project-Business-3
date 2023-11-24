@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.get("/all-programs", getAllPrograms);
 router.post("/filter-programs", filterPrograms);
-router.get("/search", searchAllPrograms);
+router.post("/search", searchAllPrograms);
 
 module.exports = router; // Export the router, not an object

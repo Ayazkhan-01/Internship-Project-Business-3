@@ -113,7 +113,7 @@ class ManualEntry extends React.Component {
 
     }
     handleDelete() {
-        this.toggleModal("notificationModal")
+        // this.toggleModal("notificationModal")
 
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -165,10 +165,34 @@ class ManualEntry extends React.Component {
             .then(response => response.json())
             .then(result => {
                 console.log(result)
-                if (result.statusCode === "200") {
-                    this.setState({ searchResult: result.body, displaySearchResult: true })
-                    this.scrollToResult()
-                }
+                // if (result.statusCode === "200") {
+                this.setState({ searchResult: result.body, displaySearchResult: true, defaultModalEdit: false })
+                // this.scrollToResult()
+                this.loader()
+                // }
+            })
+            .catch(error => console.log('error', error));
+
+    }
+    handleSearch(val) {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: JSON.stringify({
+                partialProgramName: val
+            }),
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:8000/programs/search", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result)
+                this.setState({ data: result })
             })
             .catch(error => console.log('error', error));
 
@@ -378,7 +402,9 @@ class ManualEntry extends React.Component {
                                     <Col>
                                         <Input
                                             type="text"
-                                            placeholder="Serach..."
+                                            placeholder="Serach by Program Name..."
+                                            value={this.state.searchValue}
+                                            onChange={(e) => { this.handleSearch(e.target.value); this.setState({ searchValue: e.target.value }) }}
                                         />
                                     </Col>
                                 </Row>
@@ -458,7 +484,8 @@ class ManualEntry extends React.Component {
                                                                 min_ele_consumption: item.min_ele_consumption,
                                                                 min_energy_consumption: item.min_energy_consumption,
                                                                 anual_gas_budget: item.anual_gas_budget,
-                                                                annual_ele_budget: item.annual_ele_budget
+                                                                annual_ele_budget: item.annual_ele_budget,
+                                                                id: item.pid
                                                             })
                                                             this.toggleModal("defaultModalEdit")
                                                         }}>Edit</Button>
