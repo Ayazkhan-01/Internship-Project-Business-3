@@ -3,11 +3,11 @@ const nodemailer = require('nodemailer');
 
 // Nodemailer Configuration
 const transporter = nodemailer.createTransport({
-    service:'Gmail',
+    service: 'Gmail',
     port: 8000,
     auth: {
         user: 'kadiahardi1512@gmail.com',
-        pass: 'qzsg tzxv ytsb bstj' ,
+        pass: 'qzsg tzxv ytsb bstj',
     },
 });
 
@@ -22,8 +22,8 @@ const sendContactMess = async (req, res) => {
     const mailOptions = {
         from: `${email}`,
         to: 'kadiahardi1512@gmail.com',
-        subject:  `${name}:Ontario Energy Program Query`,
-        text: `Name: ${name}\nMessage: ${message}`,
+        subject: `${name}:Ontario Energy Program Query`,
+        text: `Name: ${name}\nMessage: ${message}\n Phone no: ${phone}`,
     };
 
     // transporter.sendMail(mailOptions, (mailErr, info) => {
@@ -45,12 +45,12 @@ const sendContactMess = async (req, res) => {
     //         return;
     //     } 
     //     res.status(201).json({ message: 'Data stored successfully' });
-        
+
     // });
 
     transporter.sendMail(mailOptions, (mailErr, info) => {
         if (mailErr) {
-            console.error('Error sending email: ' + mailErr.message);
+            // console.error('Error sending email: ' + mailErr.message);
             return res.status(500).json({ error: 'Internal Server Error' });
         }
 
@@ -62,7 +62,7 @@ const sendContactMess = async (req, res) => {
             if (err) {
                 console.error('Error inserting data into the database: ' + err.message);
                 return res.status(500).json({ error: 'Internal Server Error' });
-            } 
+            }
 
             res.status(201).json({ message: 'Message sent successfully and data stored successfully' });
         });

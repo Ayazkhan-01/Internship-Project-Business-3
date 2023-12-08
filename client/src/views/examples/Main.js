@@ -36,6 +36,7 @@ class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            isProgramTypeSelected: false,
             companySec: "",
             programType: "",
             empCount: "",
@@ -129,6 +130,11 @@ class Main extends React.Component {
     }
     handleSubmit(e) {
         e.preventDefault()
+        if (!this.state.isProgramTypeSelected) {
+            // Display an error message or take other actions
+            alert('Please select a program type.');
+            return;
+        }
         console.log(this.state.elecBud)
         console.log(this.state.companySec)
         var myHeaders = new Headers();
@@ -229,11 +235,11 @@ class Main extends React.Component {
             } else {
                 // Handle error response
                 console.error('Error submitting contact us form:', response.statusText);
-                alert('Error submitting contact us form. Please try again.');
+                //alert('Error submitting contact us form. Please try again.');
             }
         } catch (error) {
             console.error('Error submitting contact us form:', error);
-            alert('Error submitting contact us form. Please try again.');
+            //alert('Error submitting contact us form. Please try again.');
         }
     };
 
@@ -330,7 +336,7 @@ class Main extends React.Component {
                                                             {this.state.companySector.map(item => (
                                                                 <>
 
-                                                                    <DropdownItem href="#pablo"
+                                                                    <DropdownItem
                                                                         key={item.id}
                                                                         value={item.id}
                                                                         onClick={(e) => { console.log(item.id); this.setState({ companySec: item }) }}
@@ -352,8 +358,8 @@ class Main extends React.Component {
                                                             {this.state.progTy.map(item => (
                                                                 <>
 
-                                                                    <DropdownItem href="#pablo"
-                                                                        onClick={(e) => { this.setState({ programType: item }) }}
+                                                                    <DropdownItem
+                                                                        onClick={(e) => { this.setState({ programType: item, isProgramTypeSelected: true }) }}
                                                                         key={item.id}
                                                                     >
                                                                         {item.name}
@@ -373,7 +379,7 @@ class Main extends React.Component {
                                                             {this.state.employeeCount.map(item => (
                                                                 <>
 
-                                                                    <DropdownItem href="#pablo"
+                                                                    <DropdownItem
                                                                         onClick={(e) => { this.setState({ empCount: item }) }}
                                                                         key={item.id}
                                                                     >
@@ -394,7 +400,7 @@ class Main extends React.Component {
                                                             {this.state.electricityBudget.map(item => (
                                                                 <>
 
-                                                                    <DropdownItem href="#pablo"
+                                                                    <DropdownItem
                                                                         onClick={(e) => { this.setState({ elecBud: item }) }}
                                                                         key={item.id}
                                                                     >
@@ -415,7 +421,7 @@ class Main extends React.Component {
                                                             {this.state.gasBudget.map(item => (
                                                                 <>
 
-                                                                    <DropdownItem href="#pablo"
+                                                                    <DropdownItem
                                                                         onClick={(e) => { this.setState({ gasBud: item }) }}
                                                                         key={item.id}
                                                                     >
@@ -436,7 +442,7 @@ class Main extends React.Component {
                                                             {this.state.energyConsumption.map(item => (
                                                                 <>
 
-                                                                    <DropdownItem href="#pablo"
+                                                                    <DropdownItem
                                                                         onClick={(e) => { this.setState({ minEnergy: item }) }}
 
                                                                         key={item.id}
@@ -452,7 +458,7 @@ class Main extends React.Component {
                                                 <Button
                                                     className="mt-4"
                                                     color="success"
-                                                    href="#pablo"
+
                                                     onClick={(e) => this.handleSubmit(e)}
                                                     style={{ width: '100%' }}
                                                 >
